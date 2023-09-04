@@ -19,6 +19,7 @@ const GptSearchBar = () => {
       API_OPTIONS
     );
     const jsonData = await data.json();
+    console.log("json data: ", jsonData);
     return jsonData.results;
   };
   const handleGptSearchClick = async () => {
@@ -39,12 +40,13 @@ const GptSearchBar = () => {
     // Kabhi Kabhie, Amar Akbar Anthony, Silsila, Zanjeer, Disco Dancer
     const gptMovies = gptResults.choices?.[0].message?.content.split(",");
     // ["Kabhi Kabhie", "Amar Akbar Anthony", "Silsila", "Zanjeer", "Disco Dancer"]
+    console.log("gptMovies", gptMovies);
 
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
     // ["promise", "promise", "promise", "promise", "promise]
 
     const tmdbResults = await Promise.all(promiseArray);
-    console.log(tmdbResults);
+    console.log("lodus", tmdbResults);
 
     dispatch(
       addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResults })
