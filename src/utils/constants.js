@@ -36,3 +36,5 @@ export const SUPPORTED_LANGUAGES = [
     name: "Chinese",
   },
 ];
+
+export const OPENAI_KEY = "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";
